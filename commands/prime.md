@@ -1,0 +1,1 @@
+read all readme.md, .ai/ folder content to familiarize yourself with the project goals, status and tasks remaining, then examine the codebase to familiarize yourself with patterns and how everything is structured, not write any code or try to change anything, just read and take it in

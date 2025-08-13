@@ -1,0 +1,2 @@
+create a PR from the current branch, verify if we're using github, gitlab or bitbucket first.
+Use conventional commit for naming the branch. Check if the repo has PR templates that we should follow, failing that we should use our best judgement template which is, summary->before->after->test plan
