@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "cleanupPeriodDays": 36500,
+  "includeCoAuthoredBy": false,
+  "permissions": {
+    "allow": ["Bash(git add:*)"],
+    "ask": ["Bash(rm:*)"]
+  },
+  "disabledMcpjsonServers": ["ide"],
+  "enabledMcpjsonServers": ["sequential-thinking", "context7"],
+  "outputStyle": "Explanatory",
+  "alwaysThinkingEnabled": true,
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/statusline.sh"
+  },
+  "env": {
+    "DISABLE_TELEMETRY": "1",
+    "CLAUDE_CODE_ENABLE_TELEMETRY": "0"
+  },
+  "hooks": {
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/notification-handler.sh"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/auto-format-ts.sh"
+          },
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/auto-format-go.sh"
+          },
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/auto-lint-fix-ts.sh"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo 'CRITICAL: Follow all rules in CLAUDE.md! NEVER EVER USE ANY IN TYPESCRIPT NO MATTER WHAT - SUPER IMPORTANT! NEVER SKIP TESTS Unless explicitly asked for and confirmed by the user! CHECK SKILLS: Before responding, check if user request matches any and use the Skill tool if ANY skill is relevant!'"
+          },
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/skill-activation-prompt-bash.sh"
+          },
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/inject-current-directory.sh"
+          }
+        ]
+      }
+    ]
+  }
+}

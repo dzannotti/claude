@@ -1,0 +1,10 @@
+debug/
+shell-snapshots/
+statsig/
+todos/
+projects/
+session-env/
+file-history/
+plans/
+node_modules
+history.jsonl
