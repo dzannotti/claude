@@ -22,12 +22,11 @@ Use `gh pr create` with conventional commit style title and body.
 ## Summary
 <Brief description>
 
-## Changes
+## Before
 - <bullet points>
 
-## Testing
-- [ ] Tests pass
-- [ ] Manually verified
+## After
+- <bullet points>
 ```
 
 ## Steps
