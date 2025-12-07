@@ -1,23 +1,26 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "cleanupPeriodDays": 36500,
-  "includeCoAuthoredBy": false,
-  "permissions": {
-    "allow": ["Bash(git add:*)"],
-    "ask": ["Bash(rm:*)"]
-  },
-  "disabledMcpjsonServers": ["ide"],
-  "enabledMcpjsonServers": ["sequential-thinking", "context7"],
-  "outputStyle": "Explanatory",
-  "alwaysThinkingEnabled": true,
-  "statusLine": {
-    "type": "command",
-    "command": "~/.claude/statusline.sh"
-  },
   "env": {
     "DISABLE_TELEMETRY": "1",
     "CLAUDE_CODE_ENABLE_TELEMETRY": "0"
   },
+  "includeCoAuthoredBy": false,
+  "permissions": {
+    "allow": [
+      "Bash(git add:*)"
+    ],
+    "ask": [
+      "Bash(rm:*)"
+    ]
+  },
+  "enabledMcpjsonServers": [
+    "sequential-thinking",
+    "context7"
+  ],
+  "disabledMcpjsonServers": [
+    "ide"
+  ],
   "hooks": {
     "Notification": [
       {
@@ -65,5 +68,14 @@
         ]
       }
     ]
-  }
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/statusline.sh"
+  },
+  "enabledPlugins": {
+    "hookify@claude-code-plugins": true
+  },
+  "outputStyle": "Explanatory",
+  "alwaysThinkingEnabled": true
 }

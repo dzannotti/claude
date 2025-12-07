@@ -8,3 +8,5 @@ file-history/
 plans/
 node_modules
 history.jsonl
+.credentials.json
+plugins/
