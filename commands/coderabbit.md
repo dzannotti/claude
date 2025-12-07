@@ -35,6 +35,10 @@ CodeRabbit is an LLM that may not have full context. For each suggestion, ask:
 
 ## Output
 
+**IMPORTANT**: Always show ALL three sections. Never omit Skipped — the user needs to see your reasoning for rejections, not just what you accepted.
+
+Use this exact template (do not include the instruction comments in output):
+
 ```
 # CodeRabbit Review - [branch-name]
 
@@ -44,7 +48,7 @@ CodeRabbit is an LLM that may not have full context. For each suggestion, ask:
 1. [file:line] Issue description
 
 ## Skipped
-- [file:line] Why it doesn't apply (one-liner)
+- [file:line] Why it doesn't apply (one-liner reasoning)
 
 ## Discuss (Your Call)
 1. [file:line] Suggestion - Tradeoff: [one-liner]

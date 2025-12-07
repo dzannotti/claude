@@ -80,7 +80,7 @@ For each comment, use the GitHub API to reply directly:
 gh api repos/{owner}/{repo}/pulls/{number}/comments \
   -X POST \
   -f body="Your reply here" \
-  -F in_reply_to_id={comment_id}
+  -F in_reply_to={comment_id}
 ```
 
 Reply templates:
