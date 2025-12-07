@@ -74,13 +74,24 @@ fix: address PR review feedback
 
 ## Phase 6: Reply to Comments
 
-For each comment:
+For each comment, use the GitHub API to reply directly:
 
-- IMPLEMENT → reply "Fixed in {sha}"
-- AUTO-DECLINE → reply with the decline reason
-- NEEDS DISCUSSION → list these for me to review
+```bash
+gh api repos/{owner}/{repo}/pulls/{number}/comments \
+  -X POST \
+  -f body="Your reply here" \
+  -F in_reply_to_id={comment_id}
+```
 
-Push the commit and replies.
+Reply templates:
+- **IMPLEMENT** → "Fixed in {sha}" (short commit hash)
+- **AUTO-DECLINE** → "Declined - {reason}" with brief reference to standard
+- **NEEDS DISCUSSION** → Don't reply. List these for me to review manually.
+
+Then push the commit:
+```bash
+git push
+```
 
 ## Skepticism Guidelines
 
