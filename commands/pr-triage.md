@@ -23,7 +23,6 @@ Filter to comments that haven't been replied to yet (check `in_reply_to_id` is n
 Read these files to understand what's acceptable:
 
 - `docs/coding-standards.md` - project style rules
-- `.github/copilot-instructions.md` - what reviewers should NOT suggest
 
 ## Phase 4: Triage Each Comment
 
@@ -85,8 +84,8 @@ Push the commit and replies.
 
 ## Skepticism Guidelines
 
-**Copilot/bot comments**: Extreme skepticism. Most are noise. Look for the 10% that are actually valid.
+**Copilot/Coderabbit comments**: Moderate skepticism. Sometimes they're just noise, it's an llm afterall. Look for the 25% that are actually valid but don't be dismissive without verifying.
 
-**Human comments**: Take more seriously, but still validate against our standards. Humans can be wrong too.
+**Human comments**: Take more seriously, but still validate against our standards. Humans can be wrong too. If the comments are from ourselves, always implent and accept
 
 **The golden rule**: If implementing the suggestion would make the code longer, more complex, or add unnecessary abstraction - it's probably wrong.
