@@ -2,7 +2,7 @@
 description: Run CodeRabbit AI review and filter for legitimate issues
 ---
 
-Run CodeRabbit CLI and filter its output intelligently. CodeRabbit is an external LLM tool - different perspective from /code-review.
+Run CodeRabbit CLI and evaluate its suggestions. CodeRabbit is an external LLM - different perspective from /code-review, may lack full context.
 
 ## Step 1: Run CodeRabbit
 
@@ -10,45 +10,44 @@ Run CodeRabbit CLI and filter its output intelligently. CodeRabbit is an externa
 coderabbit review --plain --no-color
 ```
 
-Takes 2-5 minutes. Wait for completion.
+Takes 2-5 minutes.
 
-## Step 2: Filter with Critical Thinking
+## Step 2: Evaluate Each Suggestion
 
-CodeRabbit is an LLM without full context. Apply critical thinking:
+CodeRabbit is an LLM that may not have full context. For each suggestion, ask:
 
-**Common Noise Patterns:**
-- Doc comments for obvious code
-- "Consider adding..." for hypothetical scenarios
-- Defensive validation in internal-only code
-- Abstractions for single-use cases
-- Style preferences without bug fixes
-- Complexity additions without fixing actual issues
+- Does this fix a real bug, security issue, or performance problem?
+- Does the suggestion understand our codebase patterns?
+- Is the added complexity worth it for this specific case?
+- Would this matter in practice or is it theoretical?
 
-**Core Rule**: If suggestion adds complexity without fixing a real bug, security hole, or performance issue = noise.
-
-**Don't Auto-Reject**: Apply judgment. Some complexity is justified. Some "obvious" code isn't obvious. Context matters.
+**Things to think critically about** (not auto-reject, but scrutinize):
+- Doc comments - is the code actually unclear, or is this boilerplate?
+- "Consider adding..." - real edge case or hypothetical?
+- Defensive validation - internal code or public API?
+- New abstractions - used once or genuinely reusable?
 
 ## Step 3: Categorize
 
-- **VALID**: Bugs, security issues, performance problems, real edge cases
-- **NOISE**: Doc bloat, over-engineering, unfounded hypotheticals, style nitpicks
-- **DISCUSS**: Architectural suggestions with merit, needs human judgment
+- **VALID**: Real bugs, security, performance, edge cases that will happen
+- **SKIP**: Doesn't apply to our context, misunderstood the code
+- **DISCUSS**: Has merit but tradeoffs, needs human judgment
 
-## Output Format
+## Output
 
 ```
 # CodeRabbit Review - [branch-name]
 
-**Stats**: Valid: X | Noise: Y | Discuss: Z
+**Stats**: Valid: X | Skipped: Y | Discuss: Z
 
 ## Valid Issues
 1. [file:line] Issue description
 
-## Noise (Rejected)
-- [file:line] Why rejected (one-liner)
+## Skipped
+- [file:line] Why it doesn't apply (one-liner)
 
 ## Discuss (Your Call)
 1. [file:line] Suggestion - Tradeoff: [one-liner]
 ```
 
-Present summary. Offer: `fix 1` or `fix 1,3,5` or `fix all` for valid issues.
+Offer: `fix 1` or `fix 1,3,5` or `fix all` for valid issues.
