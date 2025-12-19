@@ -73,9 +73,7 @@
     "type": "command",
     "command": "~/.claude/statusline.sh"
   },
-  "enabledPlugins": {
-    "hookify@claude-code-plugins": true
-  },
+  "enabledPlugins": {},
   "outputStyle": "Explanatory",
   "alwaysThinkingEnabled": true
 }

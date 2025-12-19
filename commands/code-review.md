@@ -102,6 +102,22 @@ Calibration guide:
 
 - [confidence][file:line] - Wrong abstraction level / wrong location / breaks pattern.
 
+## Better Approaches
+
+Ask: "Is this the best way to solve this problem, or just *a* way?"
+
+- [confidence] **Current approach**: [what they did]. **Better alternative**: [what they should consider]. **Why**: [concrete benefits - simpler, faster, more maintainable, existing pattern in codebase].
+
+Consider:
+- Does a library/utility already exist for this? (in codebase or as a dependency)
+- Is there a simpler algorithm or data structure?
+- Could this be done declaratively instead of imperatively?
+- Is this reinventing something the framework already provides?
+- Would a different design pattern reduce complexity?
+- Are we over-engineering for hypothetical future requirements?
+
+Only flag alternatives with clear, tangible benefits. "Could use X instead" without explaining why is useless.
+
 ---
 
 **Verdict**: SHIP / FIX THEN SHIP / DON'T MERGE THIS
