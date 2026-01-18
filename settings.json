@@ -73,7 +73,9 @@
     "type": "command",
     "command": "~/.claude/statusline.sh"
   },
-  "enabledPlugins": {},
+  "enabledPlugins": {
+    "gopls-lsp@claude-plugins-official": true
+  },
   "outputStyle": "Explanatory",
   "alwaysThinkingEnabled": true
 }
