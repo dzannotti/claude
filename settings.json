@@ -18,9 +18,6 @@
       "Bash(rm:*)"
     ]
   },
-  "enabledMcpjsonServers": [
-    "context7"
-  ],
   "disabledMcpjsonServers": [
     "ide"
   ],
