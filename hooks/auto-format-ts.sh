@@ -27,16 +27,21 @@ run_pkg() {
   fi
 }
 
-# Detect formatter: biome > prettier
+# Detect formatter: biome > oxfmt > prettier
 if [ -f "biome.json" ] || [ -f "biome.jsonc" ]; then
-  # Biome (Rust binary - doesn't need node/bun runtime)
   if command -v biome &>/dev/null; then
     echo "$format_files" | xargs biome format --write 2>/dev/null || true
   else
     echo "$format_files" | xargs run_pkg biome format --write 2>/dev/null || true
   fi
+elif [ -f ".oxfmtrc" ] || [ -f ".oxfmtrc.json" ] || [ -f "oxfmt.toml" ] || grep -q '"oxfmt"' package.json 2>/dev/null; then
+  # oxfmt writes in-place by default (no --write flag)
+  if command -v oxfmt &>/dev/null; then
+    echo "$format_files" | xargs oxfmt 2>/dev/null || true
+  else
+    echo "$format_files" | xargs run_pkg oxfmt 2>/dev/null || true
+  fi
 elif [ -f ".prettierrc" ] || [ -f ".prettierrc.js" ] || [ -f ".prettierrc.json" ] || [ -f "prettier.config.js" ] || [ -f "prettier.config.mjs" ] || grep -q '"prettier"' package.json 2>/dev/null; then
-  # Prettier (JS - needs correct runtime)
   if command -v prettier &>/dev/null; then
     echo "$format_files" | xargs prettier --write 2>/dev/null || true
   else

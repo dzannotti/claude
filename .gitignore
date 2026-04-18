@@ -10,3 +10,9 @@ node_modules
 history.jsonl
 .credentials.json
 plugins/
+backups/
+cache/
+paste-cache/
+sessions/
+tasks/
+mcp-needs-auth-cache.json

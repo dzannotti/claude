@@ -16,10 +16,10 @@ fi
 
 # Find the correct skills directory
 skills_dir=""
-if [[ -n "$CLAUDE_PROJECT_DIR" ]]; then
+if [[ -n "$CLAUDE_PROJECT_DIR" && -f "$CLAUDE_PROJECT_DIR/.claude/skills/skill-rules.json" ]]; then
     skills_dir="$CLAUDE_PROJECT_DIR/.claude/skills"
-elif [[ -f "/Users/dzannotti/.claude/skills/skill-rules.json" ]]; then
-    skills_dir="/Users/dzannotti/.claude/skills"
+elif [[ -f "$HOME/.claude/skills/skill-rules.json" ]]; then
+    skills_dir="$HOME/.claude/skills"
 elif [[ -f "$(pwd)/.claude/skills/skill-rules.json" ]]; then
     skills_dir="$(pwd)/.claude/skills"
 fi

@@ -1,9 +1,13 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "cleanupPeriodDays": 36500,
+  "spinnerTipsEnabled": false,
+  "autoMemoryEnabled": false,
   "env": {
-    "DISABLE_TELEMETRY": "1",
-    "CLAUDE_CODE_ENABLE_TELEMETRY": "0"
+    "ENABLE_TOOL_SEARCH": "true",
+    "CLAUDE_CODE_EFFORT_LEVEL": "max",
+    "CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING": "1",
+    "MAX_THINKING_TOKENS": "128000"
   },
   "includeCoAuthoredBy": false,
   "permissions": {
@@ -15,7 +19,6 @@
     ]
   },
   "enabledMcpjsonServers": [
-    "sequential-thinking",
     "context7"
   ],
   "disabledMcpjsonServers": [
@@ -71,10 +74,10 @@
   },
   "statusLine": {
     "type": "command",
-    "command": "~/.claude/statusline.sh"
+    "command": "~/.claude/statusline.sh",
+    "padding": 0
   },
-"outputStyle": "Explanatory",
-  "alwaysThinkingEnabled": true,
+  "outputStyle": "Explanatory",
   "spinnerVerbs": {
     "mode": "replace",
     "verbs": [
@@ -186,5 +189,6 @@
       "Debugging production on a Friday",
       "Removing tech debt"
     ]
-  }
+  },
+  "alwaysThinkingEnabled": true
 }

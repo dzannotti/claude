@@ -27,16 +27,20 @@ run_pkg() {
   fi
 }
 
-# Detect linter: biome > eslint
+# Detect linter: biome > oxlint > eslint
 if [ -f "biome.json" ] || [ -f "biome.jsonc" ]; then
-  # Biome lint + fix
   if command -v biome &>/dev/null; then
     echo "$lint_files" | xargs biome check --write 2>/dev/null || true
   else
     echo "$lint_files" | xargs run_pkg biome check --write 2>/dev/null || true
   fi
+elif [ -f ".oxlintrc.json" ] || [ -f ".oxlintrc" ] || grep -q '"oxlint"' package.json 2>/dev/null; then
+  if command -v oxlint &>/dev/null; then
+    echo "$lint_files" | xargs oxlint --fix 2>/dev/null || true
+  else
+    echo "$lint_files" | xargs run_pkg oxlint --fix 2>/dev/null || true
+  fi
 elif [ -f ".eslintrc" ] || [ -f ".eslintrc.js" ] || [ -f ".eslintrc.json" ] || [ -f ".eslintrc.cjs" ] || [ -f "eslint.config.js" ] || [ -f "eslint.config.mjs" ] || grep -q '"eslint"' package.json 2>/dev/null; then
-  # ESLint fix
   if command -v eslint &>/dev/null; then
     echo "$lint_files" | xargs eslint --fix 2>/dev/null || true
   else
