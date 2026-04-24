@@ -1,15 +1,20 @@
 #!/usr/bin/env bash
 # Runs `bun run typecheck` at the end of an agent turn (Stop hook).
-# Exits non-zero with a visible error list if TS complains, so the
-# assistant can't claim "done" on broken code.
+# Self-gates: silently skips unless the project has a package.json with a
+# "typecheck" script and `bun` is on PATH. Exits non-zero with a visible
+# error list if TS complains, so the assistant can't claim "done" on
+# broken code.
 
 set -euo pipefail
 
 PROJECT_DIR="${CLAUDE_PROJECT_DIR:-$(pwd)}"
 cd "$PROJECT_DIR"
 
-# Drain stdin (Claude Code passes hook payload; we don't need it here).
 cat >/dev/null || true
+
+[ -f package.json ] || exit 0
+command -v bun >/dev/null 2>&1 || exit 0
+grep -q '"typecheck"[[:space:]]*:' package.json || exit 0
 
 echo "[tsc-check] bun run typecheck" >&2
 if OUTPUT=$(bun run typecheck 2>&1); then

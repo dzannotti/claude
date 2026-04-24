@@ -46,6 +46,10 @@
           {
             "type": "command",
             "command": "$HOME/.claude/hooks/auto-lint-fix-ts.sh"
+          },
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/tsc-check.sh"
           }
         ]
       }
